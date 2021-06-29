@@ -18,7 +18,7 @@ async def set_currency(
     async with engine.acquire() as conn:
         async with conn.begin():
 
-            result = await conn.execute(table.insert(
+            result = await conn.execute(table.insert().values(
                 currency_title=currency_title,
                 currency_symbol=currency_symbol,
                 currency_type=currency_type,

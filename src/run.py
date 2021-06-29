@@ -75,14 +75,21 @@ async def main():
                 rate_used=info.get('data').get('rateUsd'),
                 timestamp=int(info.get('timestamp')),
             )
-        except:
-            log.error(f'Upload error for source: {currency}. Skip.')
+            success_uploading.append(currency)
+        except Exception as err:
+            log.error(f'Upload error for source: {currency}: {err}')
             uploading_errors.append(currency)
 
     log.info(f'Upload complete for resources: {success_uploading}')
-    if parsing_errors:
+    if uploading_errors:
         log.info(f'Failed uploading: {uploading_errors}')
         log.info(f'Len of failed uploadings: {len(uploading_errors)}')
+
+    log.info(f'Close connection to DataStore')
+    engine.close()
+    await engine.wait_closed()
+
+    log.info(f'Process finished')
     return
 
 asyncio.run(main())

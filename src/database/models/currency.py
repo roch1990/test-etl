@@ -11,4 +11,4 @@ class Currency(Base):
     currency_symbol = Column(String)
     currency_type = Column(String)
     rate_used = Column(String)
-    timestamp = Column(Integer)
+    timestamp = Column(String)

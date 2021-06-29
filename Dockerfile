@@ -2,7 +2,7 @@ FROM python:3.9-alpine
 
 ENV TZ=Asia/Yekaterinburg
 
-RUN apk add --virtual \
+RUN apk update && apk add --virtual \
     build-deps \
     gcc \
     g++ \
@@ -17,10 +17,16 @@ WORKDIR /opt
 
 COPY ./src .
 
-RUN pip3.7 install \
+RUN pip3.9 install \
     --requirement requirements.txt \
     --no-cache-dir
 
-EXPOSE 8080
+ENV PYTHONPATH=/opt
+
+WORKDIR /opt/src/database/migrations
+
+RUN alembic upgrade head
+
+WORKDIR /opt
 
 ENTRYPOINT python3 run.py

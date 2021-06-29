@@ -7,13 +7,10 @@ from alembic import context
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
-import log
 from config import Config
 from database import Base
 
 config = context.config
-
-dictConfig(log.ALEMBIC_LOG)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
