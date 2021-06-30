@@ -2,3 +2,4 @@ aiopg
 psycopg2-binary
 SQLAlchemy
 alembic
+aiohttp
