@@ -40,7 +40,7 @@ pipeline {
         )
       }
     }
-    stage('Check true) {
+    stage('Check true') {
       steps {
         script {
           if (true) {
