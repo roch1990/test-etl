@@ -12,7 +12,7 @@ pipeline {
           }
         )
       }
-    },
+    }
     stage('Transform') {
       steps {
         parallel(
@@ -24,7 +24,7 @@ pipeline {
           }
         )
       }
-    },
+    }
     stage('Upload') {
       steps {
         parallel(
@@ -36,9 +36,9 @@ pipeline {
           },
           "Upload to impala": {
             sh 'Hello'
-          },
+          }
         )
       }
-    },
+    }
   }
 }
