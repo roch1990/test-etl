@@ -17,10 +17,10 @@ pipeline {
       steps {
         parallel(
           "Transform meta": {
-            sh 'Hello'
+            sh 'echo Hello'
           },
           "Transform success file": {
-            sh 'Hello'
+            sh 'echo Hello'
           }
         )
       }
@@ -29,15 +29,25 @@ pipeline {
       steps {
         parallel(
           "Upload to postgres": {
-            sh 'Hello'
+            sh 'echo Hello'
           },
           "Upload to hadoop": {
-            sh 'Hello'
+            sh 'echo Hello'
           },
           "Upload to impala": {
-            sh 'Hello'
+            sh 'echo Hello'
           }
         )
+      }
+    }
+    stage('Check branch') {
+      steps {
+        script {
+          if (env.BRANCH_NAME == 'master') {
+              echo 'I only execute on the master branch'
+          } else {
+              echo 'I execute elsewhere'
+          }
       }
     }
   }
