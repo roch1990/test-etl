@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Extract') {
       steps {
         parallel(
           "Load from one source": {
@@ -25,7 +25,7 @@ pipeline {
         )
       }
     }
-    stage('Upload') {
+    stage('Load') {
       steps {
         parallel(
           "Upload to postgres": {
@@ -40,16 +40,16 @@ pipeline {
         )
       }
     }
-    stage('Check true') {
+    stage('Postgres of hadoop consistency check?') {
       steps {
         script {
           if (true) {
-            stage ('Stage 1') {
+            stage ('Postgres choosed') {
               sh 'echo Stage 1'
             }
           }
           else {
-            stage ('Stage 2') {
+            stage ('Hadoop choosed') {
               sh 'echo Stage 2'
             }
           }
