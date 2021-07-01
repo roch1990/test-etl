@@ -40,14 +40,20 @@ pipeline {
         )
       }
     }
-    stage('Check branch') {
+    stage('Check true) {
       steps {
         script {
-          if (env.BRANCH_NAME == 'master') {
-              echo 'I only execute on the master branch'
-          } else {
-              echo 'I execute elsewhere'
+          if (true) {
+            stage ('Stage 1') {
+              sh 'echo Stage 1'
+            }
           }
+          else {
+            stage ('Stage 2') {
+              sh 'echo Stage 2'
+            }
+          }
+        }
       }
     }
   }
