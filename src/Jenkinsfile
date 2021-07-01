@@ -1,0 +1,44 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        parallel(
+          "Load from one source": {
+            sh 'echo loading'
+          },
+          "Load from other source": {
+            sh 'echo loading'
+          }
+        )
+      }
+    },
+    stage('Transform') {
+      steps {
+        parallel(
+          "Transform meta": {
+            sh 'Hello'
+          },
+          "Transform success file": {
+            sh 'Hello'
+          }
+        )
+      }
+    },
+    stage('Upload') {
+      steps {
+        parallel(
+          "Upload to postgres": {
+            sh 'Hello'
+          },
+          "Upload to hadoop": {
+            sh 'Hello'
+          },
+          "Upload to impala": {
+            sh 'Hello'
+          },
+        )
+      }
+    },
+  }
+}
